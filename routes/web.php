@@ -22,21 +22,9 @@ Route::controller(NewsController::class)->prefix('admin')->group(function() {
     Route::get('news/create', 'add');
 });
 
+use App\Http\Controllers\Admin\ProfileController;
+Route::controller(ProfileController::class)->prefix('admin')->group(function() {
+    Route::get('profile/create', 'add');
+    Route::get('profile/edit', 'edit');
+});
 
-
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
-class ProfileController extends Controller
-{
-    //
-    public function add()
-    {
-        return view('admin.profile.create');
-    }
-
-    public function edit()
-    {
-        return view('admin.profile.edit');
-    }
-}
