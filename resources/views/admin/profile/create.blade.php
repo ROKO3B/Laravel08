@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.profile')
 
 @section('title','プロフィール新規作成')
 
@@ -11,3 +11,4 @@
     </div>  
 </div>  
 @endsection
+
