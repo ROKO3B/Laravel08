@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 // 以下の1行を追記することで、News Modelが扱えるようになる
 use App\Models\Profile;
 
+// 以下を追記
+use App\Models\History;
+
+use Carbon\Carbon;
+
 
 class ProfileController extends Controller
 {
@@ -71,14 +76,18 @@ class ProfileController extends Controller
         // 送信されてきたフォームデータを格納する
         $profile_form = $request->all();
         
-       
-        
         
         unset($profile_form['_token']);
         
 
         // 該当するデータを上書きして保存する
         $profile->fill($profile_form)->save();
+        
+         // 以下を追記
+        $history = new History();
+        $history->profile_id = $profile->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
 
         return redirect('admin/profile');
     }
